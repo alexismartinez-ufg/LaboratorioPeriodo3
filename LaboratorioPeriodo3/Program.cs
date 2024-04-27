@@ -34,7 +34,7 @@ namespace LaboratorioPeriodo3
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Libro}/{action=Index}/{id?}");
 
             app.Run();
         }
