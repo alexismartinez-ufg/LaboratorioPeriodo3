@@ -1,0 +1,52 @@
+﻿@model IEnumerable<LaboratorioPeriodo3.DB.Models.Libro>
+
+@{
+    ViewData["Title"] = "Lista de Libros";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Código</th>
+                <th scope="col">Título</th>
+                <th scope="col">ISBN</th>
+                <th scope="col">Año de Edición</th>
+                <th scope="col">Editorial</th>
+                <th scope="col">Autor(es)</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var libro in Model)
+            {
+                <tr>
+                    <td>@libro.Codigo</td>
+                    <td>@libro.Titulo</td>
+                    <td>@libro.Isbn</td>
+                    <td>@libro.AnioEdicion</td>
+                    <td>@libro.Editorial</td>
+                    <td>
+                        @foreach (var librosAutore in libro.LibrosAutores)
+                        {
+                            <div>@librosAutore.Autor.Nombre @librosAutore.Autor.Apellido</div>
+                        }
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Details", "Libro", new { id = libro.Codigo })" class="btn btn-info btn-sm">Detalles</a>
+                        <a href="@Url.Action("Edit", "Libro", new { id = libro.Codigo })" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="@Url.Action("Delete", "Libro", new { id = libro.Codigo })" class="btn btn-danger btn-sm">Eliminar</a>
+                        <!-- Nuevo botón para gestionar autores -->
+                        <a href="@Url.Action("Autores", "Libro", new { id = libro.Codigo })" class="btn btn-primary btn-sm">Autores</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <a href="@Url.Action("Create", "Libro")" class="btn btn-primary">Agregar Nuevo Libro</a>
+</div>

@@ -1,0 +1,51 @@
+﻿@model LaboratorioPeriodo3.DB.Models.Libro
+
+@{
+    ViewData["Title"] = "Modificar Autores del Libro";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form asp-action="Autores" method="post">
+                <div class="form-group">
+                    <label>Código del Libro</label>
+                    <input type="text" class="form-control" value="@Model.Codigo" name="Codigo" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label>Nombre del Libro</label>
+                    <input type="text" class="form-control" value="@Model.Titulo" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label>Agregar Autor</label>
+                    <select class="form-control" name="AutorId">
+                        @foreach (var autor in ViewBag.Autores)
+                        {
+                            <option value="@autor.Value">@autor.Text</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-primary">Agregar Autor</button>
+                    <a href="@Url.Action("Index", "Libro")" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </form>
+
+            <h3>Autores Asociados</h3>
+            <ul class="list-group">
+                @foreach (var la in Model.LibrosAutores)
+                {
+                    <li class="list-group-item">
+                        @la.Autor.NombreCompleto
+                        <a href="@Url.Action("EliminarAutorLibro", "Libro", new { Codigo = @Model.Codigo, AutorId = @la.AutorId })" class="btn btn-danger btn-sm float-right">Eliminar</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+﻿@model LaboratorioPeriodo3.DB.Models.Libro
+
+@{
+    ViewData["Title"] = "Editar Libro";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form asp-action="Edit" asp-route-id="@Model.Codigo" method="post">
+                <input type="hidden" asp-for="Codigo" />
+                <div class="form-group">
+                    <label asp-for="Titulo" class="control-label">Título</label>
+                    <input asp-for="Titulo" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Isbn" class="control-label">ISBN</label>
+                    <input asp-for="Isbn" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="AnioEdicion" class="control-label">Año de Edición</label>
+                    <input asp-for="AnioEdicion" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Editorial" class="control-label">Editorial</label>
+                    <input asp-for="Editorial" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Descripcion" class="control-label">Descripción</label>
+                    <textarea asp-for="Descripcion" class="form-control" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Autores Asociados</label>
+                    <div>
+                        @foreach (var librosAutore in Model.LibrosAutores)
+                        {
+                            <div>
+                                @librosAutore.Autor.Nombre @librosAutore.Autor.Apellido
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

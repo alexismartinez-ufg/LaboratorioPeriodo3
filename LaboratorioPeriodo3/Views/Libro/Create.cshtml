@@ -1,0 +1,56 @@
+﻿@model LaboratorioPeriodo3.DB.Models.Libro
+
+@{
+    ViewData["Title"] = "Agregar Nuevo Libro";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form asp-action="Create" method="post">
+                <div class="form-group">
+                    <label asp-for="Codigo" class="control-label">Código</label>
+                    <input asp-for="Codigo" class="form-control" />
+                    <span asp-validation-for="Codigo" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Titulo" class="control-label">Título</label>
+                    <input asp-for="Titulo" class="form-control" />
+                    <span asp-validation-for="Titulo" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Isbn" class="control-label">ISBN</label>
+                    <input asp-for="Isbn" class="form-control" />
+                    <span asp-validation-for="Isbn" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="AnioEdicion" class="control-label">Año de Edición</label>
+                    <input asp-for="AnioEdicion" class="form-control" />
+                    <span asp-validation-for="AnioEdicion" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Editorial" class="control-label">Editorial</label>
+                    <input asp-for="Editorial" class="form-control" />
+                    <span asp-validation-for="Editorial" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Descripcion" class="control-label">Descripción</label>
+                    <textarea asp-for="Descripcion" class="form-control" rows="3"></textarea>
+                    <span asp-validation-for="Descripcion" class="text-danger"></span>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Agregar Libro</button>
+                    <a href="@Url.Action("Index", "Libro")" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

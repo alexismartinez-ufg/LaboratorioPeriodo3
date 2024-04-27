@@ -1,0 +1,40 @@
+﻿@model IEnumerable<LaboratorioPeriodo3.DB.Models.Autore>
+
+@{
+    ViewData["Title"] = "Lista de Autores";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Autor ID</th>
+                            <th scope="col">Nombre Completo</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var autor in Model)
+                                    {
+                            <tr>
+                                <td>@autor.AutorId</td>
+                                <td>@autor.NombreCompleto</td>
+                                <td>
+                                    <a href="@Url.Action("Edit", "Autor", new { id = autor.AutorId })" class="btn btn-warning btn-sm">Editar</a>
+                                    <a href="@Url.Action("Delete", "Autor", new { id = autor.AutorId })" class="btn btn-danger btn-sm">Eliminar</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <a href="@Url.Action("Create", "Autor")" class="btn btn-primary">Agregar Nuevo Autor</a>
+        </div>
+    </div>
+</div>

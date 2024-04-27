@@ -1,0 +1,35 @@
+﻿@model LaboratorioPeriodo3.DB.Models.Libro
+
+@{
+    ViewData["Title"] = "Eliminar Libro";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+            <h3>¿Estás seguro que deseas eliminar este libro?</h3>
+
+            <dl class="row">
+                <dt class="col-sm-3">Código</dt>
+                <dd class="col-sm-9">@Model.Codigo</dd>
+
+                <dt class="col-sm-3">Título</dt>
+                <dd class="col-sm-9">@Model.Titulo</dd>
+
+                <dt class="col-sm-3">ISBN</dt>
+                <dd class="col-sm-9">@Model.Isbn</dd>
+
+                <dt class="col-sm-3">Editorial</dt>
+                <dd class="col-sm-9">@Model.Editorial</dd>
+            </dl>
+
+            <form asp-action="Delete" method="post">
+                <input type="hidden" asp-for="Codigo" />
+                <button type="submit" class="btn btn-danger">Sí, Eliminar</button>
+                <a href="@Url.Action("Index", "Libro")" class="btn btn-secondary">No, Regresar</a>
+            </form>
+        </div>
+    </div>
+</div>

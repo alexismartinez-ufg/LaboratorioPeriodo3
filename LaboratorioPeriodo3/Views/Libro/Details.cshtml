@@ -1,0 +1,47 @@
+﻿@model LaboratorioPeriodo3.DB.Models.Libro
+
+@{
+    ViewData["Title"] = "Detalles del Libro";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <dl class="row">
+                <dt class="col-sm-3">Código</dt>
+                <dd class="col-sm-9">@Model.Codigo</dd>
+
+                <dt class="col-sm-3">Título</dt>
+                <dd class="col-sm-9">@Model.Titulo</dd>
+
+                <dt class="col-sm-3">ISBN</dt>
+                <dd class="col-sm-9">@Model.Isbn</dd>
+
+                <dt class="col-sm-3">Año de Edición</dt>
+                <dd class="col-sm-9">@Model.AnioEdicion</dd>
+
+                <dt class="col-sm-3">Editorial</dt>
+                <dd class="col-sm-9">@Model.Editorial</dd>
+
+                <dt class="col-sm-3">Descripción</dt>
+                <dd class="col-sm-9">@Model.Descripcion</dd>
+
+                <dt class="col-sm-3">Autores</dt>
+                <dd class="col-sm-9">
+                    @foreach (var librosAutore in Model.LibrosAutores)
+                    {
+                        <div>@librosAutore?.Autor?.Nombre @librosAutore?.Autor?.Apellido</div>
+                    }
+                </dd>
+            </dl>
+
+            <div class="text-center">
+                <a href="@Url.Action("Index", "Libro")" class="btn btn-secondary">Regresar al Índice</a>
+                <a href="@Url.Action("Edit", "Libro", new { id = Model.Codigo })" class="btn btn-warning">Editar</a>
+                <a href="@Url.Action("Delete", "Libro", new { id = Model.Codigo })" class="btn btn-danger">Eliminar</a>
+            </div>
+        </div>
+    </div>
+</div>
